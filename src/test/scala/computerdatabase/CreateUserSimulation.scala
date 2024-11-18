@@ -29,13 +29,13 @@ class CreateUserSimulation extends Simulation {
 
   //------------User Data-------------
 
-  val numUsers = 10  // Define how many name-email pairs to generate
+  val numUsers = 20  // Define how many name-email pairs to generate
 
   // Create a feeder that generates unique user data (name and email)
   val feeder = Iterator.continually {
     Map(
       "name" -> s"nameT${Random.alphanumeric.take(20).mkString}",
-      "email" -> s"nameT${Random.alphanumeric.take(20).mkString}@foo.com"
+      "email" -> s"nameT${Random.alphanumeric.take(20).mkString}@mail.com"
     )
   }
 
@@ -71,7 +71,7 @@ class CreateUserSimulation extends Simulation {
 
   setUp(
     scn.inject(
-      atOnceUsers(numUsers) // Simulate 1 user at once
+      atOnceUsers(numUsers) // Simulate numUsers user at once
     ).protocols(httpProtocol)
   )
    /* .throttle(
